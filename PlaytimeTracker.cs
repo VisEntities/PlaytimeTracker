@@ -481,7 +481,6 @@ namespace Oxide.Plugins
 
         private static class PermissionUtil
         {
-            public const string ADMIN = "playtimetracker.use";
             public const string USE = "playtimetracker.use";
             private static readonly List<string> _permissions = new List<string>
             {
