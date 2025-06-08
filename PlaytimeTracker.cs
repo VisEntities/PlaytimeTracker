@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Oxide.Plugins
 {
-    [Info("Playtime Tracker", "VisEntities", "1.0.0")]
+    [Info("Playtime Tracker", "VisEntities", "1.0.1")]
     [Description("Provides an API to track player playtime and AFK time for other plugins.")]
     public class PlaytimeTracker : RustPlugin
     {
@@ -508,6 +508,12 @@ namespace Oxide.Plugins
         [ChatCommand("playtime")]
         private void cmdPlaytime(BasePlayer player, string command, string[] args)
         {
+            if (player == null || !PermissionUtil.HasPermission(player, PermissionUtil.USE))
+            {
+                MessagePlayer(player, Lang.Error_NoPermission);
+                return;
+            }
+
             if (args.Length == 0)
             {
                 PlayerData data = GetOrCreatePlayerData(player);
